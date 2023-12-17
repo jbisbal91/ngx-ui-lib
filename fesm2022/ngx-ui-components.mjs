@@ -71,10 +71,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
 
 class TabGroupComponent {
     constructor() {
+        this.animationToLeft = false;
+        this.animationToRigth = false;
+        this.animationToCenter = false;
         this.subscription = new Subscription();
     }
     ngAfterContentInit() {
-        this.selectTab(this.tabs.first);
+        setTimeout(() => {
+            this.selectTab(this.tabs.first);
+        });
     }
     ngOnDestroy() {
         this.subscription.unsubscribe();
@@ -83,15 +88,36 @@ class TabGroupComponent {
         if (tab.disabled) {
             return;
         }
-        this.tabs.forEach(tab => tab.isActive = false);
+        if (tab === this.tabs.first) {
+            return this.animationmoveToRight(tab);
+        }
+        if (tab === this.tabs.last) {
+            return this.animationmoveToLeft(tab);
+        }
+        return this.animationmoveToLeft(tab);
+    }
+    animationmoveToLeft(tab) {
+        this.animationToLeft = true;
+        this.tabs.forEach((tab) => (tab.isActive = false));
         tab.isActive = true;
+        setTimeout(() => {
+            this.animationToLeft = false;
+        }, 300);
+    }
+    animationmoveToRight(tab) {
+        this.animationToRigth = true;
+        this.tabs.forEach((tab) => (tab.isActive = false));
+        tab.isActive = true;
+        setTimeout(() => {
+            this.animationToRigth = false;
+        }, 300);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TabGroupComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TabGroupComponent, selector: "ngx-tab-group", queries: [{ propertyName: "tabs", predicate: TabComponent }], ngImport: i0, template: "<ul class=\"z-50 flex justify-around list-none m-0 relative w-full\">\n    <li class=\"flex justify-center w-full text-lg font-semibold text-black cursor-pointer h-10 items-center\"\n        *ngFor=\"let tab of tabs\"\n        [ngClass]=\"{'active text-blue-800 opacity-100':tab.isActive,'opacity-50 cursor-no-drop ':tab.disabled}\"\n        (click)=\"selectTab(tab)\">\n        {{tab.label}}\n    </li>\n</ul>\n\n<div class=\"mt-2\">\n    <ng-content></ng-content>\n</div>", styles: [":host{width:100%}ul{padding:20px 10px 2px!important}ul li{border-bottom:2px solid transparent}ul li.active{border-bottom:2px solid #3F51B5}\n"], dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TabGroupComponent, selector: "ngx-tab-group", queries: [{ propertyName: "tabs", predicate: TabComponent }], ngImport: i0, template: "<ul class=\"z-40 flex justify-around list-none m-0 relative w-full\">\n  <li\n    class=\"flex justify-center w-full font-normal cursor-pointer h-10 items-center\"\n    *ngFor=\"let tab of tabs\"\n    [ngClass]=\"{\n      'active font-bold opacity-100': tab.isActive,\n      'opacity-50 cursor-no-drop ': tab.disabled\n    }\"\n    (click)=\"selectTab(tab)\"\n  >\n    {{ tab.label }}\n  </li>\n</ul>\n\n<div\n  class=\"mt-2\"\n  [class.animation-center-left]=\"animationToLeft\"\n  [class.animation-left-center]=\"animationToRigth\"\n>\n  <ng-content></ng-content>\n</div>\n", styles: [":host{width:100%}ul{padding:20px 10px 2px!important}ul li{border-bottom:2px solid transparent}ul li.active{border-bottom:2px solid #e8eaed}.animation-right-center{position:relative;animation-name:animation-right-center-frames;animation-duration:.3s}@keyframes animation-right-center-frames{0%{left:100%;top:0}to{left:0;top:0}}.animation-center-left{position:relative;animation-name:animation-center-left-frames;animation-duration:.3s}@keyframes animation-center-left-frames{0%{right:0%;top:0}to{right:100%;top:0}}.animation-left-center{position:relative;animation-name:animation-left-center-frames;animation-duration:.3s}@keyframes animation-left-center-frames{0%{right:100%;top:0}to{right:0%;top:0}}\n"], dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TabGroupComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'ngx-tab-group', template: "<ul class=\"z-50 flex justify-around list-none m-0 relative w-full\">\n    <li class=\"flex justify-center w-full text-lg font-semibold text-black cursor-pointer h-10 items-center\"\n        *ngFor=\"let tab of tabs\"\n        [ngClass]=\"{'active text-blue-800 opacity-100':tab.isActive,'opacity-50 cursor-no-drop ':tab.disabled}\"\n        (click)=\"selectTab(tab)\">\n        {{tab.label}}\n    </li>\n</ul>\n\n<div class=\"mt-2\">\n    <ng-content></ng-content>\n</div>", styles: [":host{width:100%}ul{padding:20px 10px 2px!important}ul li{border-bottom:2px solid transparent}ul li.active{border-bottom:2px solid #3F51B5}\n"] }]
+            args: [{ selector: 'ngx-tab-group', template: "<ul class=\"z-40 flex justify-around list-none m-0 relative w-full\">\n  <li\n    class=\"flex justify-center w-full font-normal cursor-pointer h-10 items-center\"\n    *ngFor=\"let tab of tabs\"\n    [ngClass]=\"{\n      'active font-bold opacity-100': tab.isActive,\n      'opacity-50 cursor-no-drop ': tab.disabled\n    }\"\n    (click)=\"selectTab(tab)\"\n  >\n    {{ tab.label }}\n  </li>\n</ul>\n\n<div\n  class=\"mt-2\"\n  [class.animation-center-left]=\"animationToLeft\"\n  [class.animation-left-center]=\"animationToRigth\"\n>\n  <ng-content></ng-content>\n</div>\n", styles: [":host{width:100%}ul{padding:20px 10px 2px!important}ul li{border-bottom:2px solid transparent}ul li.active{border-bottom:2px solid #e8eaed}.animation-right-center{position:relative;animation-name:animation-right-center-frames;animation-duration:.3s}@keyframes animation-right-center-frames{0%{left:100%;top:0}to{left:0;top:0}}.animation-center-left{position:relative;animation-name:animation-center-left-frames;animation-duration:.3s}@keyframes animation-center-left-frames{0%{right:0%;top:0}to{right:100%;top:0}}.animation-left-center{position:relative;animation-name:animation-left-center-frames;animation-duration:.3s}@keyframes animation-left-center-frames{0%{right:100%;top:0}to{right:0%;top:0}}\n"] }]
         }], propDecorators: { tabs: [{
                 type: ContentChildren,
                 args: [TabComponent]
