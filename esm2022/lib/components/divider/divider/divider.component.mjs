@@ -1,0 +1,17 @@
+import { Component, Input } from '@angular/core';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common";
+export class DividerComponent {
+    constructor() {
+        this.ngxText = '';
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: DividerComponent, selector: "ngx-divider", inputs: { ngxText: "ngxText" }, ngImport: i0, template: "<ng-container>\r\n    <span *ngIf=\"ngxText \" class=\"px-2.5 text-base\">{{ngxText}}</span>\r\n</ng-container>", styles: [":host{display:flex;color:#6b727c;font-weight:500;font-size:16px;white-space:nowrap;text-align:center;border-top:0;border-top-color:#6b727c;align-items:center}:host:before,:host:after{position:relative;top:50%;width:50%;border-top:1px solid transparent;border-top-color:transparent;border-top-color:inherit;border-bottom:0;content:\"\"}\n"], dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-divider', template: "<ng-container>\r\n    <span *ngIf=\"ngxText \" class=\"px-2.5 text-base\">{{ngxText}}</span>\r\n</ng-container>", styles: [":host{display:flex;color:#6b727c;font-weight:500;font-size:16px;white-space:nowrap;text-align:center;border-top:0;border-top-color:#6b727c;align-items:center}:host:before,:host:after{position:relative;top:50%;width:50%;border-top:1px solid transparent;border-top-color:transparent;border-top-color:inherit;border-bottom:0;content:\"\"}\n"] }]
+        }], propDecorators: { ngxText: [{
+                type: Input
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGl2aWRlci5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9uZ3gtdWktY29tcG9uZW50cy9zcmMvbGliL2NvbXBvbmVudHMvZGl2aWRlci9kaXZpZGVyL2RpdmlkZXIuY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvbmd4LXVpLWNvbXBvbmVudHMvc3JjL2xpYi9jb21wb25lbnRzL2RpdmlkZXIvZGl2aWRlci9kaXZpZGVyLmNvbXBvbmVudC5odG1sIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsS0FBSyxFQUFFLE1BQU0sZUFBZSxDQUFDOzs7QUFPakQsTUFBTSxPQUFPLGdCQUFnQjtJQUw3QjtRQU9XLFlBQU8sR0FBVyxFQUFFLENBQUM7S0FFL0I7K0dBSlksZ0JBQWdCO21HQUFoQixnQkFBZ0IsbUZDUDdCLGlIQUVlOzs0RkRLRixnQkFBZ0I7a0JBTDVCLFNBQVM7K0JBQ0UsYUFBYTs4QkFNZCxPQUFPO3NCQUFmLEtBQUsiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIElucHV0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XHJcblxyXG5AQ29tcG9uZW50KHtcclxuICBzZWxlY3RvcjogJ25neC1kaXZpZGVyJyxcclxuICB0ZW1wbGF0ZVVybDogJy4vZGl2aWRlci5jb21wb25lbnQuaHRtbCcsXHJcbiAgc3R5bGVVcmxzOiBbJy4vZGl2aWRlci5jb21wb25lbnQuc2NzcyddXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBEaXZpZGVyQ29tcG9uZW50IHtcclxuXHJcbiAgQElucHV0KCkgbmd4VGV4dDogc3RyaW5nID0gJyc7XHJcblxyXG59XHJcbiIsIjxuZy1jb250YWluZXI+XHJcbiAgICA8c3BhbiAqbmdJZj1cIm5neFRleHQgXCIgY2xhc3M9XCJweC0yLjUgdGV4dC1iYXNlXCI+e3tuZ3hUZXh0fX08L3NwYW4+XHJcbjwvbmctY29udGFpbmVyPiJdfQ==
