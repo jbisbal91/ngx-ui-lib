@@ -33,16 +33,27 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
   ` }]
         }] });
 
+class CarouselComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CarouselComponent, selector: "ngx-carousel", ngImport: i0, template: "<p>carousel works!</p>\n", styles: [""] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-carousel', template: "<p>carousel works!</p>\n" }]
+        }] });
+
 class NgxUiComponentsModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NgxUiComponentsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: NgxUiComponentsModule, declarations: [NgxUiComponentsComponent], exports: [NgxUiComponentsComponent] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: NgxUiComponentsModule, declarations: [NgxUiComponentsComponent,
+            CarouselComponent], exports: [NgxUiComponentsComponent] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NgxUiComponentsModule }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NgxUiComponentsModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
-                        NgxUiComponentsComponent
+                        NgxUiComponentsComponent,
+                        CarouselComponent
                     ],
                     imports: [],
                     exports: [
@@ -573,6 +584,128 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                 }]
         }] });
 
+class CardComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardComponent, selector: "ngx-card", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{background:var(--ngx-theme-bg-card);border-radius:.5rem;box-shadow:0 2px 1px -1px #0003,0 1px 1px #00000024,0 1px 3px #0000001f;display:flex;flex-direction:column;box-sizing:border-box}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card', template: "<ng-content></ng-content>\n", styles: [":host{background:var(--ngx-theme-bg-card);border-radius:.5rem;box-shadow:0 2px 1px -1px #0003,0 1px 1px #00000024,0 1px 3px #0000001f;display:flex;flex-direction:column;box-sizing:border-box}\n"] }]
+        }] });
+
+class CardHeaderComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardHeaderComponent, selector: "ngx-card-header", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:flex;padding:1rem 1rem 0}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardHeaderComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card-header', template: "<ng-content></ng-content>\n", styles: [":host{display:flex;padding:1rem 1rem 0}\n"] }]
+        }] });
+
+class CardContentComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardContentComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardContentComponent, selector: "ngx-card-content", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:block;padding:0 1rem}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardContentComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card-content', template: "<ng-content></ng-content>\n", styles: [":host{display:block;padding:0 1rem}\n"] }]
+        }] });
+
+class CardActionsComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardActionsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardActionsComponent, selector: "ngx-card-actions", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:3.25rem;padding:.5rem}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardActionsComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card-actions', template: "<ng-content></ng-content>\n", styles: [":host{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:3.25rem;padding:.5rem}\n"] }]
+        }] });
+
+class CardAvatarDirective {
+    constructor(elementRef, renderer2) {
+        this.elementRef = elementRef;
+        this.renderer2 = renderer2;
+    }
+    ngOnInit() {
+        this.setStyle();
+    }
+    setStyle() {
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'height', '2.5rem');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'width', '2.5rem');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'border-radius', '50%');
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardAvatarDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CardAvatarDirective, selector: "[ngx-card-avatar]", ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardAvatarDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngx-card-avatar]',
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class CardImageDirective {
+    constructor(elementRef, renderer2) {
+        this.elementRef = elementRef;
+        this.renderer2 = renderer2;
+    }
+    ngOnInit() {
+        this.setStyle();
+    }
+    setStyle() {
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'position', 'relative');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'box-sizing', 'border-box');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-repeat', 'no-repeat');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-position', 'center');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-size', 'cover');
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardImageDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CardImageDirective, selector: "[ngx-card-image]", ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardImageDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngx-card-image]',
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class CardModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: CardModule, declarations: [CardComponent,
+            CardHeaderComponent,
+            CardContentComponent,
+            CardActionsComponent,
+            CardAvatarDirective,
+            CardImageDirective], imports: [CommonModule], exports: [CardComponent,
+            CardHeaderComponent,
+            CardContentComponent,
+            CardActionsComponent,
+            CardAvatarDirective,
+            CardImageDirective] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        CardComponent,
+                        CardHeaderComponent,
+                        CardContentComponent,
+                        CardActionsComponent,
+                        CardAvatarDirective,
+                        CardImageDirective,
+                    ],
+                    exports: [
+                        CardComponent,
+                        CardHeaderComponent,
+                        CardContentComponent,
+                        CardActionsComponent,
+                        CardAvatarDirective,
+                        CardImageDirective,
+                    ],
+                    imports: [CommonModule],
+                }]
+        }] });
+
 class IconDirective {
     constructor(elementRef, renderer2) {
         this.elementRef = elementRef;
@@ -653,5 +786,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { AccordionComponent, BlockButtonDirective, ButtonModule, DangerButtonDirective, DialogComponent, DialogModule, DividerComponent, DividerModule, ExpansionPanelComponent, ExpansionPanelModule, GhostButtonDirective, IconDirective, IconModule, NgxButtonDirective, NgxUiComponentsComponent, NgxUiComponentsModule, NgxUiComponentsService, SuccessButtonDirective, TabComponent, TabGroupComponent, TabModule };
+export { AccordionComponent, BlockButtonDirective, ButtonModule, CardActionsComponent, CardAvatarDirective, CardComponent, CardContentComponent, CardHeaderComponent, CardImageDirective, CardModule, DangerButtonDirective, DialogComponent, DialogModule, DividerComponent, DividerModule, ExpansionPanelComponent, ExpansionPanelModule, GhostButtonDirective, IconDirective, IconModule, NgxButtonDirective, NgxUiComponentsComponent, NgxUiComponentsModule, NgxUiComponentsService, SuccessButtonDirective, TabComponent, TabGroupComponent, TabModule };
 //# sourceMappingURL=ngx-ui-components.mjs.map
