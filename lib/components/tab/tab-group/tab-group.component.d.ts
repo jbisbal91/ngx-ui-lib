@@ -6,7 +6,6 @@ export declare class TabGroupComponent {
     tabs: QueryList<TabComponent>;
     animationToLeft: boolean;
     animationToRigth: boolean;
-    animationToCenter: boolean;
     private subscription;
     ngAfterContentInit(): void;
     ngOnDestroy(): void;
