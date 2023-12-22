@@ -702,9 +702,10 @@ class CarouselComponent {
     ngAfterContentInit() {
         this.carouselItems.first.isActive = true;
         this.currentItem = this.carouselItems.first;
+        this.cdr.markForCheck();
+        console.log(this.ngxAutoPlay);
         if (this.ngxAutoPlay) {
             this.autoPlay();
-            this.cdr.markForCheck();
         }
     }
     autoPlay(index = 0) {
