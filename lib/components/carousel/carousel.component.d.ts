@@ -1,13 +1,14 @@
-import { AfterContentInit, ChangeDetectorRef, QueryList } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, OnChanges, QueryList, SimpleChanges } from '@angular/core';
 import { CarouselItemComponent } from './carousel-item/carousel-item.component';
 import * as i0 from "@angular/core";
-export declare class CarouselComponent implements AfterContentInit {
+export declare class CarouselComponent implements AfterContentInit, OnChanges {
     private cdr;
     carouselItems: QueryList<CarouselItemComponent>;
     ngxAutoPlay: boolean;
     ngxAutoPlaySpeed: number;
     currentItem: CarouselItemComponent;
     constructor(cdr: ChangeDetectorRef);
+    ngOnChanges(changes: SimpleChanges): void;
     ngAfterContentInit(): void;
     autoPlay(index?: number): void;
     onClick(carouselItem: any): void;
