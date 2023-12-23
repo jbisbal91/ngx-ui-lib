@@ -12,6 +12,6 @@ export declare class BadgeDirective implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<BadgeDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<BadgeDirective, "[ngxBadge]", never, { "ngxBadge": { "alias": "ngxBadge"; "required": false; }; "ngxBadgePosition": { "alias": "ngxBadgePosition"; "required": false; }; "ngxBadgeSize": { "alias": "ngxBadgeSize"; "required": false; }; "hidden": { "alias": "ngxBadgeHidden"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<BadgeDirective, "[ngxBadge]", never, { "ngxBadge": { "alias": "ngxBadge"; "required": false; }; "ngxBadgePosition": { "alias": "ngxBadgePosition"; "required": false; }; "ngxBadgeSize": { "alias": "ngxBadgeSize"; "required": false; }; "hidden": { "alias": "ngxBadgeHidden"; "required": false; }; }, {}, never, never, false, never>;
     static ngAcceptInputType_hidden: unknown;
 }
