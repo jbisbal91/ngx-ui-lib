@@ -759,7 +759,7 @@ class BadgeDirective {
         this.newSpan = document.createElement('span');
     }
     ngOnChanges(changes) {
-        if (changes['hidden'].currentValue) {
+        if (changes['hidden']?.currentValue) {
             this.renderer2.addClass(this.newSpan, 'ngx-badge-hidden');
         }
         else {
