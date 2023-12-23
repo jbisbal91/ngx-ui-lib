@@ -27,5 +27,7 @@ export * from './lib/components/card/directives/card-image.directive';
 export * from './lib/components/carousel/carousel.module';
 export * from './lib/components/carousel/carousel.component';
 export * from './lib/components/carousel/carousel-item/carousel-item.component';
+export * from './lib/components/badge/badge.module';
+export * from './lib/components/badge/badge.directive';
 export * from './lib/components/icon/icon.module';
 export * from './lib/components/icon/icon.directive';

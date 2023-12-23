@@ -229,7 +229,6 @@ class NgxButtonDirective {
             }
             case 'link': {
                 this.renderer2.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'color', '#1890FF');
                 this.renderer2.setStyle(this.elementRef.nativeElement, 'border', 'none');
                 break;
             }
@@ -750,6 +749,71 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                 }]
         }] });
 
+class BadgeDirective {
+    constructor(elementRef, renderer2) {
+        this.elementRef = elementRef;
+        this.renderer2 = renderer2;
+        this.ngxBadgePosition = 'after';
+        this.ngxBadgeSize = 'small';
+        this.hidden = false;
+        this.newSpan = document.createElement('span');
+    }
+    ngOnChanges(changes) {
+        if (changes['hidden'].currentValue) {
+            this.renderer2.addClass(this.newSpan, 'ngx-badge-hidden');
+        }
+        else {
+            this.renderer2.removeClass(this.newSpan, 'ngx-badge-hidden');
+        }
+    }
+    ngOnInit() {
+        this.newSpan.textContent = this.ngxBadge;
+        this.renderer2.addClass(this.newSpan, 'ngx-badge-content');
+        if (this.elementRef.nativeElement.tagName.toLowerCase() === 'button') {
+            this.renderer2.addClass(this.newSpan, 'ngx-badge-btn');
+        }
+        if (this.ngxBadgePosition == 'before') {
+            this.renderer2.addClass(this.newSpan, 'ngx-badge-before');
+        }
+        this.renderer2.addClass(this.newSpan, `ngx-badge-${this.ngxBadgeSize}`);
+        this.renderer2.appendChild(this.elementRef.nativeElement, this.newSpan);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "16.2.12", type: BadgeDirective, isStandalone: true, selector: "[ngxBadge]", inputs: { ngxBadge: "ngxBadge", ngxBadgePosition: "ngxBadgePosition", ngxBadgeSize: "ngxBadgeSize", hidden: ["ngxBadgeHidden", "hidden", booleanAttribute] }, host: { classAttribute: "ngx-badge" }, usesOnChanges: true, ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngxBadge]',
+                    host: {
+                        class: 'ngx-badge',
+                    },
+                    standalone: true,
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; }, propDecorators: { ngxBadge: [{
+                type: Input
+            }], ngxBadgePosition: [{
+                type: Input
+            }], ngxBadgeSize: [{
+                type: Input
+            }], hidden: [{
+                type: Input,
+                args: [{ alias: 'ngxBadgeHidden', transform: booleanAttribute }]
+            }] } });
+
+class BadgeModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, imports: [CommonModule, BadgeDirective], exports: [BadgeDirective] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [CommonModule, BadgeDirective],
+                    exports: [BadgeDirective]
+                }]
+        }] });
+
 class IconDirective {
     constructor(elementRef, renderer2) {
         this.elementRef = elementRef;
@@ -830,5 +894,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { AccordionComponent, BlockButtonDirective, ButtonModule, CardActionsComponent, CardAvatarDirective, CardComponent, CardContentComponent, CardHeaderComponent, CardImageDirective, CardModule, CarouselComponent, CarouselItemComponent, CarouselModule, DangerButtonDirective, DialogComponent, DialogModule, DividerComponent, DividerModule, ExpansionPanelComponent, ExpansionPanelModule, GhostButtonDirective, IconDirective, IconModule, NgxButtonDirective, NgxUiComponentsComponent, NgxUiComponentsModule, NgxUiComponentsService, SuccessButtonDirective, TabComponent, TabGroupComponent, TabModule };
+export { AccordionComponent, BadgeDirective, BadgeModule, BlockButtonDirective, ButtonModule, CardActionsComponent, CardAvatarDirective, CardComponent, CardContentComponent, CardHeaderComponent, CardImageDirective, CardModule, CarouselComponent, CarouselItemComponent, CarouselModule, DangerButtonDirective, DialogComponent, DialogModule, DividerComponent, DividerModule, ExpansionPanelComponent, ExpansionPanelModule, GhostButtonDirective, IconDirective, IconModule, NgxButtonDirective, NgxUiComponentsComponent, NgxUiComponentsModule, NgxUiComponentsService, SuccessButtonDirective, TabComponent, TabGroupComponent, TabModule };
 //# sourceMappingURL=ngx-ui-components.mjs.map
