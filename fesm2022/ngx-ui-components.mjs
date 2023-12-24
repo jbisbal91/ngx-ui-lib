@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, Component, NgModule, Input, ContentChildren, Directive, EventEmitter, Output, booleanAttribute, ChangeDetectionStrategy } from '@angular/core';
+import { Injectable, Component, NgModule, Directive, Input, booleanAttribute, ChangeDetectionStrategy, ContentChildren, EventEmitter, Output } from '@angular/core';
 import * as i1 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Subscription, Subject } from 'rxjs';
@@ -48,6 +48,553 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     exports: [
                         NgxUiComponentsComponent
                     ]
+                }]
+        }] });
+
+class BadgeDirective {
+    constructor(elementRef, renderer2) {
+        this.elementRef = elementRef;
+        this.renderer2 = renderer2;
+        this.ngxBadgePosition = 'after';
+        this.ngxBadgeSize = 'small';
+        this.ngxBadgeHidden = false;
+        this.newSpan = document.createElement('span');
+    }
+    ngOnChanges(changes) {
+        if (changes['ngxBadgeHidden']?.currentValue) {
+            this.renderer2.addClass(this.newSpan, 'ngx-badge-hidden');
+        }
+        else {
+            this.renderer2.removeClass(this.newSpan, 'ngx-badge-hidden');
+        }
+    }
+    ngOnInit() {
+        this.newSpan.textContent = this.ngxBadge;
+        this.renderer2.addClass(this.newSpan, 'ngx-badge-content');
+        if (this.elementRef.nativeElement.tagName.toLowerCase() === 'button') {
+            this.renderer2.addClass(this.newSpan, 'ngx-badge-btn');
+        }
+        if (this.ngxBadgePosition == 'before') {
+            this.renderer2.addClass(this.newSpan, 'ngx-badge-before');
+        }
+        this.renderer2.addClass(this.newSpan, `ngx-badge-${this.ngxBadgeSize}`);
+        this.renderer2.appendChild(this.elementRef.nativeElement, this.newSpan);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: BadgeDirective, selector: "[ngxBadge]", inputs: { ngxBadge: "ngxBadge", ngxBadgePosition: "ngxBadgePosition", ngxBadgeSize: "ngxBadgeSize", ngxBadgeHidden: "ngxBadgeHidden" }, host: { classAttribute: "ngx-badge" }, usesOnChanges: true, ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngxBadge]',
+                    host: {
+                        class: 'ngx-badge',
+                    },
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; }, propDecorators: { ngxBadge: [{
+                type: Input
+            }], ngxBadgePosition: [{
+                type: Input
+            }], ngxBadgeSize: [{
+                type: Input
+            }], ngxBadgeHidden: [{
+                type: Input
+            }] } });
+
+class BadgeModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, declarations: [BadgeDirective], imports: [CommonModule], exports: [BadgeDirective] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [BadgeDirective],
+                    exports: [BadgeDirective],
+                    imports: [CommonModule],
+                }]
+        }] });
+
+class NgxButtonDirective {
+    constructor(elementRef, renderer2) {
+        this.elementRef = elementRef;
+        this.renderer2 = renderer2;
+        this.ngxType = 'default';
+        this.disabled = false;
+    }
+    ngOnInit() {
+        this.setStyle();
+    }
+    setStyle() {
+    }
+    hover(disabled) {
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NgxButtonDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: NgxButtonDirective, selector: "[ngx-button]", inputs: { ngxType: "ngxType" }, host: { properties: { "class.ngx-button-primary": "ngxType === \"primary\"", "class.ngx-button-default": "ngxType === \"default\"", "class.ngx-button-dashed": "ngxType === \"dashed\"", "class.ngx-button-text": "ngxType === \"text\"", "class.ngx-button-link": "ngxType === \"link\"" }, classAttribute: "ngx-button" }, ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NgxButtonDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngx-button]',
+                    host: {
+                        class: 'ngx-button',
+                        '[class.ngx-button-primary]': 'ngxType === "primary"',
+                        '[class.ngx-button-default]': 'ngxType === "default"',
+                        '[class.ngx-button-dashed]': 'ngxType === "dashed"',
+                        '[class.ngx-button-text]': 'ngxType === "text"',
+                        '[class.ngx-button-link]': 'ngxType === "link"',
+                    },
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; }, propDecorators: { ngxType: [{
+                type: Input
+            }] } });
+
+class DangerButtonDirective extends NgxButtonDirective {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DangerButtonDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: DangerButtonDirective, selector: "[ngxDanger]", host: { classAttribute: "ngx-danger" }, usesInheritance: true, ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DangerButtonDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngxDanger]',
+                    host: {
+                        class: 'ngx-danger',
+                    },
+                }]
+        }] });
+
+class BlockButtonDirective extends NgxButtonDirective {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BlockButtonDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: BlockButtonDirective, selector: "[ngxBlock]", host: { classAttribute: "ngx-block" }, usesInheritance: true, ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BlockButtonDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngxBlock]',
+                    host: {
+                        class: 'ngx-block',
+                    },
+                }]
+        }] });
+
+class GhostButtonDirective extends NgxButtonDirective {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GhostButtonDirective, deps: null, target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GhostButtonDirective, selector: "[ngxGhost]", host: { classAttribute: "ngx-ghost" }, usesInheritance: true, ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GhostButtonDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngxGhost]',
+                    host: {
+                        class: 'ngx-ghost',
+                    },
+                }]
+        }] });
+
+class SuccessButtonDirective extends NgxButtonDirective {
+    constructor(element, renderer) {
+        super(element, renderer);
+        this.element = element;
+        this.renderer = renderer;
+    }
+    ngOnInit() {
+        this.setStyle();
+    }
+    setStyle() {
+        switch (this.ngxType) {
+            case 'primary': {
+                this.renderer.setStyle(this.element.nativeElement, 'background-color', this.disabled ? '#30E87A' : '#5AF499');
+                this.renderer.setStyle(this.elementRef.nativeElement, 'color', '#18181B');
+                break;
+            }
+            case 'default': {
+                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
+                this.renderer.setStyle(this.element.nativeElement, 'border-color', '#5AF499');
+                break;
+            }
+            case 'dashed': {
+                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
+                this.renderer.setStyle(this.element.nativeElement, 'border-color', '#5AF499');
+                break;
+            }
+            case 'text': {
+                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
+                break;
+            }
+            case 'link': {
+                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
+                break;
+            }
+        }
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SuccessButtonDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: SuccessButtonDirective, selector: "[ngxSuccess]", host: { classAttribute: "ngx-success" }, usesInheritance: true, ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SuccessButtonDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngxSuccess]',
+                    host: {
+                        class: 'ngx-success',
+                    },
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+const directives = [
+    NgxButtonDirective,
+    SuccessButtonDirective,
+    DangerButtonDirective,
+    GhostButtonDirective,
+    BlockButtonDirective,
+];
+class ButtonModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, declarations: [NgxButtonDirective,
+            SuccessButtonDirective,
+            DangerButtonDirective,
+            GhostButtonDirective,
+            BlockButtonDirective], imports: [CommonModule], exports: [NgxButtonDirective,
+            SuccessButtonDirective,
+            DangerButtonDirective,
+            GhostButtonDirective,
+            BlockButtonDirective] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [directives],
+                    exports: [directives],
+                    imports: [CommonModule],
+                }]
+        }] });
+
+class CarouselItemComponent {
+    constructor() {
+        this.id = '';
+        this.isActive = false;
+        this.disabled = false;
+    }
+    ngOnInit() {
+        this.id = this.guid();
+    }
+    guid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = (Math.random() * 16) | 0, v = c == 'x' ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+        });
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CarouselItemComponent, selector: "ngx-carousel-item", inputs: { disabled: "disabled" }, ngImport: i0, template: "<div class=\"ngx-carousel-item\" [id]=\"id\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}.ngx-carousel-item{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselItemComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-carousel-item', template: "<div class=\"ngx-carousel-item\" [id]=\"id\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}.ngx-carousel-item{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}\n"] }]
+        }], propDecorators: { disabled: [{
+                type: Input
+            }] } });
+
+class CarouselComponent {
+    constructor(cdr) {
+        this.cdr = cdr;
+        this.ngxAutoPlaySpeed = 3000;
+    }
+    ngAfterContentInit() {
+        this.carouselItems.first.isActive = true;
+        this.currentItem = this.carouselItems.first;
+        this.cdr.markForCheck();
+        if (this.ngxAutoPlay) {
+            this.autoPlay();
+        }
+    }
+    autoPlay(index = 0) {
+        setTimeout(() => {
+            this.onClick(this.carouselItems.get(index));
+            index = index === this.carouselItems.length - 1 ? 0 : ++index;
+            this.autoPlay(index);
+        }, this.ngxAutoPlaySpeed);
+    }
+    onClick(carouselItem) {
+        this.carouselItems?.forEach((ci) => {
+            ci.isActive = ci.id === carouselItem.id ? true : false;
+        });
+        const element = document.getElementById(carouselItem.id);
+        element?.scrollIntoView({ behavior: 'smooth' });
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: CarouselComponent, selector: "ngx-carousel", inputs: { ngxAutoPlay: ["ngxAutoPlay", "ngxAutoPlay", booleanAttribute], ngxAutoPlaySpeed: "ngxAutoPlaySpeed" }, queries: [{ propertyName: "carouselItems", predicate: CarouselItemComponent }], ngImport: i0, template: "<div class=\"ngx-carousel\">\r\n  <div class=\"slick-initialized slick-slider\">\r\n    <div class=\"slick-list\">\r\n      <div class=\"slick-track\">\r\n        <ng-content></ng-content>\r\n      </div>\r\n    </div>\r\n\r\n    <ul class=\"slick-list slick-dots slick-dots-bottom\">\r\n      <li\r\n        [class.slick-active]=\"carouselItem.isActive\"\r\n        *ngFor=\"let carouselItem of carouselItems\"\r\n        (click)=\"onClick(carouselItem)\"\r\n      >\r\n        <button>{{ carouselItem.id }}</button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n", styles: ["@charset \"UTF-8\";.ngx-carousel{box-sizing:border-box;margin:0;padding:0;color:#000000d9;font-size:14px;font-variant:tabular-nums;line-height:1.5715;list-style:none;font-feature-settings:\"tnum\";overflow:auto}.ngx-carousel .slick-slider{position:relative;display:block;box-sizing:border-box;touch-action:pan-y;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}.ngx-carousel .slick-list{position:relative;display:block;margin:0;padding:0;overflow:hidden}.ngx-carousel .slick-list:focus{outline:none}.ngx-carousel .slick-list.dragging{cursor:pointer}.ngx-carousel .slick-list .slick-slide{pointer-events:none}.ngx-carousel .slick-list .slick-slide input.ant-radio-input,.ngx-carousel .slick-list .slick-slide input.ant-checkbox-input{visibility:hidden}.ngx-carousel .slick-list .slick-slide.slick-active{pointer-events:auto}.ngx-carousel .slick-list .slick-slide.slick-active input.ant-radio-input,.ngx-carousel .slick-list .slick-slide.slick-active input.ant-checkbox-input{visibility:visible}.ngx-carousel .slick-list .slick-slide>div>div{vertical-align:bottom}.ngx-carousel .slick-slider .slick-track,.ngx-carousel .slick-slider .slick-list{transform:translateZ(0);touch-action:pan-y}.ngx-carousel .slick-track{position:relative;top:0;left:0;display:flex}.ngx-carousel .slick-track:before,.ngx-carousel .slick-track:after{display:table;content:\"\"}.ngx-carousel .slick-track:after{clear:both}.slick-loading .ngx-carousel .slick-track{visibility:hidden}.ngx-carousel .slick-slide{display:none;float:left;height:100%;min-height:1px}.ngx-carousel .slick-slide img{display:block}.ngx-carousel .slick-slide.slick-loading img{display:none}.ngx-carousel .slick-slide.dragging img{pointer-events:none}.ngx-carousel .slick-initialized .slick-slide{display:block}.ngx-carousel .slick-loading .slick-slide{visibility:hidden}.ngx-carousel .slick-vertical .slick-slide{display:block;height:auto}.ngx-carousel .slick-arrow.slick-hidden{display:none}.ngx-carousel .slick-prev,.ngx-carousel .slick-next{top:50%;display:block;width:20px;height:20px;margin-top:-10px;padding:0;color:transparent;font-size:0;line-height:0;background:transparent;border:0;outline:none;cursor:pointer}.ngx-carousel .slick-prev:hover,.ngx-carousel .slick-next:hover,.ngx-carousel .slick-prev:focus,.ngx-carousel .slick-next:focus{color:transparent;background:transparent;outline:none}.ngx-carousel .slick-prev:hover:before,.ngx-carousel .slick-next:hover:before,.ngx-carousel .slick-prev:focus:before,.ngx-carousel .slick-next:focus:before{opacity:1}.ngx-carousel .slick-prev.slick-disabled:before,.ngx-carousel .slick-next.slick-disabled:before{opacity:.25}.ngx-carousel .slick-prev{left:-25px}.ngx-carousel .slick-prev:before{content:\"\\2190\"}.ngx-carousel .slick-next{right:-25px}.ngx-carousel .slick-next:before{content:\"\\2192\"}.ngx-carousel .slick-dots{position:absolute;right:0;bottom:0;left:0;z-index:15;display:flex!important;justify-content:center;margin-right:15%;margin-left:15%;padding-left:0;list-style:none}.ngx-carousel .slick-dots-bottom{bottom:12px}.ngx-carousel .slick-dots-top{top:12px;bottom:auto}.ngx-carousel .slick-dots li{position:relative;display:inline-block;flex:0 1 auto;box-sizing:content-box;width:16px;height:3px;margin:0 3px;padding:0;text-align:center;text-indent:-999px;vertical-align:top;transition:all .5s}.ngx-carousel .slick-dots li button{display:block;width:100%;height:3px;padding:0;color:transparent;font-size:0;background:#fff;border:0;border-radius:1px;outline:none;cursor:pointer;opacity:.3;transition:all .5s}.ngx-carousel .slick-dots li button:hover,.ngx-carousel .slick-dots li button:focus{opacity:.75}.ngx-carousel .slick-dots li.slick-active{width:24px}.ngx-carousel .slick-dots li.slick-active button{background:#fff;opacity:1}.ngx-carousel .slick-dots li.slick-active:hover,.ngx-carousel .slick-dots li.slick-active:focus{opacity:1}ngx-carousel{display:block;position:relative;overflow:hidden;width:100%;height:100%}.slick-dots{display:block}.slick-track{opacity:1}.slick-list{direction:ltr}\n"], dependencies: [{ kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-carousel', changeDetection: ChangeDetectionStrategy.OnPush, template: "<div class=\"ngx-carousel\">\r\n  <div class=\"slick-initialized slick-slider\">\r\n    <div class=\"slick-list\">\r\n      <div class=\"slick-track\">\r\n        <ng-content></ng-content>\r\n      </div>\r\n    </div>\r\n\r\n    <ul class=\"slick-list slick-dots slick-dots-bottom\">\r\n      <li\r\n        [class.slick-active]=\"carouselItem.isActive\"\r\n        *ngFor=\"let carouselItem of carouselItems\"\r\n        (click)=\"onClick(carouselItem)\"\r\n      >\r\n        <button>{{ carouselItem.id }}</button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n", styles: ["@charset \"UTF-8\";.ngx-carousel{box-sizing:border-box;margin:0;padding:0;color:#000000d9;font-size:14px;font-variant:tabular-nums;line-height:1.5715;list-style:none;font-feature-settings:\"tnum\";overflow:auto}.ngx-carousel .slick-slider{position:relative;display:block;box-sizing:border-box;touch-action:pan-y;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}.ngx-carousel .slick-list{position:relative;display:block;margin:0;padding:0;overflow:hidden}.ngx-carousel .slick-list:focus{outline:none}.ngx-carousel .slick-list.dragging{cursor:pointer}.ngx-carousel .slick-list .slick-slide{pointer-events:none}.ngx-carousel .slick-list .slick-slide input.ant-radio-input,.ngx-carousel .slick-list .slick-slide input.ant-checkbox-input{visibility:hidden}.ngx-carousel .slick-list .slick-slide.slick-active{pointer-events:auto}.ngx-carousel .slick-list .slick-slide.slick-active input.ant-radio-input,.ngx-carousel .slick-list .slick-slide.slick-active input.ant-checkbox-input{visibility:visible}.ngx-carousel .slick-list .slick-slide>div>div{vertical-align:bottom}.ngx-carousel .slick-slider .slick-track,.ngx-carousel .slick-slider .slick-list{transform:translateZ(0);touch-action:pan-y}.ngx-carousel .slick-track{position:relative;top:0;left:0;display:flex}.ngx-carousel .slick-track:before,.ngx-carousel .slick-track:after{display:table;content:\"\"}.ngx-carousel .slick-track:after{clear:both}.slick-loading .ngx-carousel .slick-track{visibility:hidden}.ngx-carousel .slick-slide{display:none;float:left;height:100%;min-height:1px}.ngx-carousel .slick-slide img{display:block}.ngx-carousel .slick-slide.slick-loading img{display:none}.ngx-carousel .slick-slide.dragging img{pointer-events:none}.ngx-carousel .slick-initialized .slick-slide{display:block}.ngx-carousel .slick-loading .slick-slide{visibility:hidden}.ngx-carousel .slick-vertical .slick-slide{display:block;height:auto}.ngx-carousel .slick-arrow.slick-hidden{display:none}.ngx-carousel .slick-prev,.ngx-carousel .slick-next{top:50%;display:block;width:20px;height:20px;margin-top:-10px;padding:0;color:transparent;font-size:0;line-height:0;background:transparent;border:0;outline:none;cursor:pointer}.ngx-carousel .slick-prev:hover,.ngx-carousel .slick-next:hover,.ngx-carousel .slick-prev:focus,.ngx-carousel .slick-next:focus{color:transparent;background:transparent;outline:none}.ngx-carousel .slick-prev:hover:before,.ngx-carousel .slick-next:hover:before,.ngx-carousel .slick-prev:focus:before,.ngx-carousel .slick-next:focus:before{opacity:1}.ngx-carousel .slick-prev.slick-disabled:before,.ngx-carousel .slick-next.slick-disabled:before{opacity:.25}.ngx-carousel .slick-prev{left:-25px}.ngx-carousel .slick-prev:before{content:\"\\2190\"}.ngx-carousel .slick-next{right:-25px}.ngx-carousel .slick-next:before{content:\"\\2192\"}.ngx-carousel .slick-dots{position:absolute;right:0;bottom:0;left:0;z-index:15;display:flex!important;justify-content:center;margin-right:15%;margin-left:15%;padding-left:0;list-style:none}.ngx-carousel .slick-dots-bottom{bottom:12px}.ngx-carousel .slick-dots-top{top:12px;bottom:auto}.ngx-carousel .slick-dots li{position:relative;display:inline-block;flex:0 1 auto;box-sizing:content-box;width:16px;height:3px;margin:0 3px;padding:0;text-align:center;text-indent:-999px;vertical-align:top;transition:all .5s}.ngx-carousel .slick-dots li button{display:block;width:100%;height:3px;padding:0;color:transparent;font-size:0;background:#fff;border:0;border-radius:1px;outline:none;cursor:pointer;opacity:.3;transition:all .5s}.ngx-carousel .slick-dots li button:hover,.ngx-carousel .slick-dots li button:focus{opacity:.75}.ngx-carousel .slick-dots li.slick-active{width:24px}.ngx-carousel .slick-dots li.slick-active button{background:#fff;opacity:1}.ngx-carousel .slick-dots li.slick-active:hover,.ngx-carousel .slick-dots li.slick-active:focus{opacity:1}ngx-carousel{display:block;position:relative;overflow:hidden;width:100%;height:100%}.slick-dots{display:block}.slick-track{opacity:1}.slick-list{direction:ltr}\n"] }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { carouselItems: [{
+                type: ContentChildren,
+                args: [CarouselItemComponent]
+            }], ngxAutoPlay: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
+            }], ngxAutoPlaySpeed: [{
+                type: Input
+            }] } });
+
+class CarouselModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, declarations: [CarouselComponent, CarouselItemComponent], imports: [CommonModule], exports: [CarouselComponent, CarouselItemComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [CarouselComponent, CarouselItemComponent],
+                    exports: [CarouselComponent, CarouselItemComponent],
+                    imports: [CommonModule],
+                }]
+        }] });
+
+class CardComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardComponent, selector: "ngx-card", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{background:var(--ngx-theme-bg-card);border-radius:.5rem;box-shadow:0 2px 1px -1px #0003,0 1px 1px #00000024,0 1px 3px #0000001f;display:flex;flex-direction:column;box-sizing:border-box}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card', template: "<ng-content></ng-content>\n", styles: [":host{background:var(--ngx-theme-bg-card);border-radius:.5rem;box-shadow:0 2px 1px -1px #0003,0 1px 1px #00000024,0 1px 3px #0000001f;display:flex;flex-direction:column;box-sizing:border-box}\n"] }]
+        }] });
+
+class CardHeaderComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardHeaderComponent, selector: "ngx-card-header", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:flex;padding:1rem 1rem 0}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardHeaderComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card-header', template: "<ng-content></ng-content>\n", styles: [":host{display:flex;padding:1rem 1rem 0}\n"] }]
+        }] });
+
+class CardContentComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardContentComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardContentComponent, selector: "ngx-card-content", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:block;padding:0 1rem}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardContentComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card-content', template: "<ng-content></ng-content>\n", styles: [":host{display:block;padding:0 1rem}\n"] }]
+        }] });
+
+class CardActionsComponent {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardActionsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardActionsComponent, selector: "ngx-card-actions", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:3.25rem;padding:.5rem}\n"] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardActionsComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-card-actions', template: "<ng-content></ng-content>\n", styles: [":host{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:3.25rem;padding:.5rem}\n"] }]
+        }] });
+
+class CardAvatarDirective {
+    constructor(elementRef, renderer2) {
+        this.elementRef = elementRef;
+        this.renderer2 = renderer2;
+    }
+    ngOnInit() {
+        this.setStyle();
+    }
+    setStyle() {
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'height', '2.5rem');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'width', '2.5rem');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'border-radius', '50%');
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardAvatarDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CardAvatarDirective, selector: "[ngx-card-avatar]", ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardAvatarDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngx-card-avatar]',
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class CardImageDirective {
+    constructor(elementRef, renderer2) {
+        this.elementRef = elementRef;
+        this.renderer2 = renderer2;
+    }
+    ngOnInit() {
+        this.setStyle();
+    }
+    setStyle() {
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'position', 'relative');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'box-sizing', 'border-box');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-repeat', 'no-repeat');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-position', 'center');
+        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-size', 'cover');
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardImageDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CardImageDirective, selector: "[ngx-card-image]", ngImport: i0 }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardImageDirective, decorators: [{
+            type: Directive,
+            args: [{
+                    selector: '[ngx-card-image]',
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
+
+class CardModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: CardModule, declarations: [CardComponent,
+            CardHeaderComponent,
+            CardContentComponent,
+            CardActionsComponent,
+            CardAvatarDirective,
+            CardImageDirective], imports: [CommonModule], exports: [CardComponent,
+            CardHeaderComponent,
+            CardContentComponent,
+            CardActionsComponent,
+            CardAvatarDirective,
+            CardImageDirective] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        CardComponent,
+                        CardHeaderComponent,
+                        CardContentComponent,
+                        CardActionsComponent,
+                        CardAvatarDirective,
+                        CardImageDirective,
+                    ],
+                    exports: [
+                        CardComponent,
+                        CardHeaderComponent,
+                        CardContentComponent,
+                        CardActionsComponent,
+                        CardAvatarDirective,
+                        CardImageDirective,
+                    ],
+                    imports: [CommonModule],
+                }]
+        }] });
+
+class DividerComponent {
+    constructor() {
+        this.ngxText = '';
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: DividerComponent, selector: "ngx-divider", inputs: { ngxText: "ngxText" }, ngImport: i0, template: "<ng-container>\r\n    <span *ngIf=\"ngxText \" class=\"px-2.5 text-base\">{{ngxText}}</span>\r\n</ng-container>", styles: [":host{display:flex;color:#6b727c;font-weight:500;font-size:16px;white-space:nowrap;text-align:center;border-top:0;border-top-color:#6b727c;align-items:center}:host:before,:host:after{position:relative;top:50%;width:50%;border-top:1px solid transparent;border-top-color:transparent;border-top-color:inherit;border-bottom:0;content:\"\"}\n"], dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-divider', template: "<ng-container>\r\n    <span *ngIf=\"ngxText \" class=\"px-2.5 text-base\">{{ngxText}}</span>\r\n</ng-container>", styles: [":host{display:flex;color:#6b727c;font-weight:500;font-size:16px;white-space:nowrap;text-align:center;border-top:0;border-top-color:#6b727c;align-items:center}:host:before,:host:after{position:relative;top:50%;width:50%;border-top:1px solid transparent;border-top-color:transparent;border-top-color:inherit;border-bottom:0;content:\"\"}\n"] }]
+        }], propDecorators: { ngxText: [{
+                type: Input
+            }] } });
+
+class DividerModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, declarations: [DividerComponent], imports: [CommonModule], exports: [DividerComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [
+                        DividerComponent
+                    ],
+                    exports: [
+                        DividerComponent
+                    ],
+                    imports: [
+                        CommonModule
+                    ]
+                }]
+        }] });
+
+class ExpansionPanelComponent {
+    constructor() {
+        this.onClick = new EventEmitter();
+        this.id = '';
+        this.disabled = false;
+        this.expanded = false;
+        this.label = '';
+        this.ngxType = 'normal';
+    }
+    ngOnInit() {
+        this.id = this.guid();
+    }
+    expand() {
+        const expansionPanel = new ExpansionPanelComponent();
+        expansionPanel.expanded = this.expanded;
+        expansionPanel.label = this.label;
+        expansionPanel.disabled = this.disabled;
+        expansionPanel.id = this.id;
+        this.onClick.emit(expansionPanel);
+    }
+    guid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = (Math.random() * 16) | 0, v = c == 'x' ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+        });
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ExpansionPanelComponent, selector: "ngx-expansion-panel", inputs: { disabled: "disabled", label: "label", ngxType: "ngxType" }, outputs: { onClick: "onClick" }, ngImport: i0, template: "<div\r\n  class=\"card-epanel mb-4 p-4\"\r\n  [class.card-bg]=\"ngxType === 'card'\"\r\n  [ngClass]=\"{ 'rounded-lg box-shadow': ngxType === 'card' }\"\r\n>\r\n  <div\r\n    (click)=\"expand()\"\r\n    class=\"flex justify-between w-full text-lg font-semibold cursor-pointer h-10 items-center\"\r\n  >\r\n    <span>{{ label }}</span>\r\n    <span\r\n      class=\"arrow flex justify-center items-center\"\r\n      [ngClass]=\"expanded ? 'rotate' : 'no-rotate'\"\r\n    >\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        height=\"24\"\r\n        viewBox=\"0 -960 960 960\"\r\n        width=\"24\"\r\n      >\r\n        <path d=\"M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z\" />\r\n      </svg>\r\n    </span>\r\n  </div>\r\n  <ng-content *ngIf=\"expanded\"></ng-content>\r\n  <ngx-divider class=\"mt-4\" *ngIf=\"ngxType === 'normal'\"></ngx-divider>\r\n</div>\r\n", styles: [":host{width:100%}.card-bg{background-color:var(--ngx-theme-bg-epanel)}.card-epanel{color:var(--ngx-theme-color-epanel)}.rotate{rotate:180deg;transition:rotate .2s ease-out}.no-rotate{rotate:0deg;transition:rotate .2s ease-out}.box-shadow{box-shadow:0 3px 1px -2px #0003,0 2px 2px #00000024,0 1px 5px #0000001f}.mt-4{margin-top:1rem}.mb-4{margin-bottom:1rem}.p-4{p:1rem}.arrow{filter:var(--ngx-theme-filter-epanel-arrow)}\n"], dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: DividerComponent, selector: "ngx-divider", inputs: ["ngxText"] }] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-expansion-panel', template: "<div\r\n  class=\"card-epanel mb-4 p-4\"\r\n  [class.card-bg]=\"ngxType === 'card'\"\r\n  [ngClass]=\"{ 'rounded-lg box-shadow': ngxType === 'card' }\"\r\n>\r\n  <div\r\n    (click)=\"expand()\"\r\n    class=\"flex justify-between w-full text-lg font-semibold cursor-pointer h-10 items-center\"\r\n  >\r\n    <span>{{ label }}</span>\r\n    <span\r\n      class=\"arrow flex justify-center items-center\"\r\n      [ngClass]=\"expanded ? 'rotate' : 'no-rotate'\"\r\n    >\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        height=\"24\"\r\n        viewBox=\"0 -960 960 960\"\r\n        width=\"24\"\r\n      >\r\n        <path d=\"M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z\" />\r\n      </svg>\r\n    </span>\r\n  </div>\r\n  <ng-content *ngIf=\"expanded\"></ng-content>\r\n  <ngx-divider class=\"mt-4\" *ngIf=\"ngxType === 'normal'\"></ngx-divider>\r\n</div>\r\n", styles: [":host{width:100%}.card-bg{background-color:var(--ngx-theme-bg-epanel)}.card-epanel{color:var(--ngx-theme-color-epanel)}.rotate{rotate:180deg;transition:rotate .2s ease-out}.no-rotate{rotate:0deg;transition:rotate .2s ease-out}.box-shadow{box-shadow:0 3px 1px -2px #0003,0 2px 2px #00000024,0 1px 5px #0000001f}.mt-4{margin-top:1rem}.mb-4{margin-bottom:1rem}.p-4{p:1rem}.arrow{filter:var(--ngx-theme-filter-epanel-arrow)}\n"] }]
+        }], ctorParameters: function () { return []; }, propDecorators: { onClick: [{
+                type: Output
+            }], disabled: [{
+                type: Input
+            }], label: [{
+                type: Input
+            }], ngxType: [{
+                type: Input
+            }] } });
+
+class AccordionComponent {
+    constructor() {
+        this.subscription = new Subscription();
+    }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+    ngAfterContentInit() {
+        this.expansionPanels.forEach(ep => {
+            this.subscription.add(ep.onClick.subscribe((value) => {
+                this.expand(value);
+            }));
+        });
+    }
+    expand(component) {
+        this.expansionPanels.forEach(ep => {
+            if (ep.id === component.id) {
+                ep.expanded = ep.expanded ? false : true;
+            }
+            else {
+                ep.expanded = false;
+            }
+        });
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AccordionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: AccordionComponent, selector: "ngx-accordion", queries: [{ propertyName: "expansionPanels", predicate: ExpansionPanelComponent }], ngImport: i0, template: "<ng-container *ngFor=\"let expansionPanel of expansionPanels\">\n    <ng-content></ng-content>\n</ng-container>", styles: [""], dependencies: [{ kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AccordionComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-accordion', template: "<ng-container *ngFor=\"let expansionPanel of expansionPanels\">\n    <ng-content></ng-content>\n</ng-container>" }]
+        }], propDecorators: { expansionPanels: [{
+                type: ContentChildren,
+                args: [ExpansionPanelComponent]
+            }] } });
+
+class ExpansionPanelModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, declarations: [AccordionComponent, ExpansionPanelComponent], imports: [CommonModule, DividerModule], exports: [AccordionComponent, ExpansionPanelComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, imports: [CommonModule, DividerModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [AccordionComponent, ExpansionPanelComponent],
+                    exports: [AccordionComponent, ExpansionPanelComponent],
+                    imports: [CommonModule, DividerModule],
                 }]
         }] });
 
@@ -180,636 +727,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     imports: [
                         CommonModule
                     ]
-                }]
-        }] });
-
-class NgxButtonDirective {
-    constructor(elementRef, renderer2) {
-        this.elementRef = elementRef;
-        this.renderer2 = renderer2;
-        this.ngxType = 'default';
-        this.disabled = false;
-    }
-    ngOnInit() {
-        this.setStyle();
-    }
-    setStyle() {
-        this.disabled = this.elementRef.nativeElement.disabled;
-        if (this.disabled) {
-            this.renderer2.setStyle(this.elementRef.nativeElement, 'opacity', '0.65');
-        }
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'padding', '8px 16px');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'font-size', '14px');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'border-radius', '4px');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'cursor', this.disabled ? 'no-drop' : 'pointer');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'border', '1px solid');
-        switch (this.ngxType) {
-            case 'primary': {
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'background-color', this.disabled ? '#DCDCDC' : '#1890FF');
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'color', '#FFFFFF');
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'border', 'none');
-                this.hover(this.disabled);
-                break;
-            }
-            case 'default': {
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
-                this.hover(this.disabled);
-                break;
-            }
-            case 'dashed': {
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'border', '1px dashed');
-                this.hover(this.disabled);
-                break;
-            }
-            case 'text': {
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'border', 'none');
-                break;
-            }
-            case 'link': {
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
-                this.renderer2.setStyle(this.elementRef.nativeElement, 'border', 'none');
-                break;
-            }
-        }
-    }
-    hover(disabled) {
-        if (disabled) {
-            return;
-        }
-        this.renderer2.listen(this.elementRef.nativeElement, 'mouseenter', () => {
-            this.renderer2.setStyle(this.elementRef.nativeElement, 'box-shadow', '0 4px 8px rgba(0, 0, 0, 0.1)');
-        });
-        this.renderer2.listen(this.elementRef.nativeElement, 'mouseleave', () => {
-            this.renderer2.setStyle(this.elementRef.nativeElement, 'box-shadow', '');
-        });
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NgxButtonDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: NgxButtonDirective, selector: "[ngx-button]", inputs: { ngxType: "ngxType" }, ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NgxButtonDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngx-button]'
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; }, propDecorators: { ngxType: [{
-                type: Input
-            }] } });
-
-class DangerButtonDirective extends NgxButtonDirective {
-    constructor(element, renderer) {
-        super(element, renderer);
-        this.element = element;
-        this.renderer = renderer;
-    }
-    ngOnInit() {
-        this.setStyle();
-    }
-    setStyle() {
-        switch (this.ngxType) {
-            case 'primary': {
-                this.renderer.setStyle(this.element.nativeElement, 'background-color', this.disabled ? '#FFC1C1' : '#FF4D4F');
-                break;
-            }
-            case 'default': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#FF4D4F');
-                this.renderer.setStyle(this.element.nativeElement, 'border-color', '#FF4D4F');
-                break;
-            }
-            case 'dashed': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#FF4D4F');
-                this.renderer.setStyle(this.element.nativeElement, 'border-color', '#FF4D4F');
-                break;
-            }
-            case 'text': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#FF4D4F');
-                break;
-            }
-            case 'link': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#FF4D4F');
-                break;
-            }
-        }
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DangerButtonDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: DangerButtonDirective, selector: "[ngxDanger]", usesInheritance: true, ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DangerButtonDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngxDanger]'
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class BlockButtonDirective extends NgxButtonDirective {
-    constructor(element, renderer) {
-        super(element, renderer);
-        this.element = element;
-        this.renderer = renderer;
-    }
-    ngOnInit() {
-        this.renderer.setStyle(this.element.nativeElement, 'width', '100%');
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BlockButtonDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: BlockButtonDirective, selector: "[ngxBlock]", usesInheritance: true, ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BlockButtonDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngxBlock]'
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class GhostButtonDirective extends NgxButtonDirective {
-    constructor(element, renderer) {
-        super(element, renderer);
-        this.element = element;
-        this.renderer = renderer;
-    }
-    ngOnInit() {
-        this.setStyle();
-    }
-    setStyle() {
-        this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent');
-        this.renderer.setStyle(this.elementRef.nativeElement, 'color', '#FFFFFF');
-        this.renderer.setStyle(this.elementRef.nativeElement, 'border-color', '#FFFFFF');
-        switch (this.ngxType) {
-            case 'primary': {
-                this.renderer.setStyle(this.elementRef.nativeElement, 'color', '#096dd9');
-                this.renderer.setStyle(this.elementRef.nativeElement, 'border', '1px solid');
-                this.renderer.setStyle(this.elementRef.nativeElement, 'border-color', '#096dd9');
-                break;
-            }
-            case 'text': {
-                this.renderer.setStyle(this.elementRef.nativeElement, 'border', '1px solid');
-                break;
-            }
-        }
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GhostButtonDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GhostButtonDirective, selector: "[ngxGhost]", usesInheritance: true, ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GhostButtonDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngxGhost]'
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class SuccessButtonDirective extends NgxButtonDirective {
-    constructor(element, renderer) {
-        super(element, renderer);
-        this.element = element;
-        this.renderer = renderer;
-    }
-    ngOnInit() {
-        this.setStyle();
-    }
-    setStyle() {
-        switch (this.ngxType) {
-            case 'primary': {
-                this.renderer.setStyle(this.element.nativeElement, 'background-color', this.disabled ? '#30E87A' : '#5AF499');
-                this.renderer.setStyle(this.elementRef.nativeElement, 'color', '#18181B');
-                break;
-            }
-            case 'default': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
-                this.renderer.setStyle(this.element.nativeElement, 'border-color', '#5AF499');
-                break;
-            }
-            case 'dashed': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
-                this.renderer.setStyle(this.element.nativeElement, 'border-color', '#5AF499');
-                break;
-            }
-            case 'text': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
-                break;
-            }
-            case 'link': {
-                this.renderer.setStyle(this.element.nativeElement, 'color', '#5AF499');
-                break;
-            }
-        }
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SuccessButtonDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: SuccessButtonDirective, selector: "[ngxSuccess]", usesInheritance: true, ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SuccessButtonDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngxSuccess]'
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-const directives = [NgxButtonDirective, SuccessButtonDirective, DangerButtonDirective, GhostButtonDirective, BlockButtonDirective];
-class ButtonModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, declarations: [NgxButtonDirective, SuccessButtonDirective, DangerButtonDirective, GhostButtonDirective, BlockButtonDirective], imports: [CommonModule], exports: [NgxButtonDirective, SuccessButtonDirective, DangerButtonDirective, GhostButtonDirective, BlockButtonDirective] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, imports: [CommonModule] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ButtonModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    declarations: [directives],
-                    exports: [directives],
-                    imports: [
-                        CommonModule
-                    ]
-                }]
-        }] });
-
-class DividerComponent {
-    constructor() {
-        this.ngxText = '';
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: DividerComponent, selector: "ngx-divider", inputs: { ngxText: "ngxText" }, ngImport: i0, template: "<ng-container>\r\n    <span *ngIf=\"ngxText \" class=\"px-2.5 text-base\">{{ngxText}}</span>\r\n</ng-container>", styles: [":host{display:flex;color:#6b727c;font-weight:500;font-size:16px;white-space:nowrap;text-align:center;border-top:0;border-top-color:#6b727c;align-items:center}:host:before,:host:after{position:relative;top:50%;width:50%;border-top:1px solid transparent;border-top-color:transparent;border-top-color:inherit;border-bottom:0;content:\"\"}\n"], dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-divider', template: "<ng-container>\r\n    <span *ngIf=\"ngxText \" class=\"px-2.5 text-base\">{{ngxText}}</span>\r\n</ng-container>", styles: [":host{display:flex;color:#6b727c;font-weight:500;font-size:16px;white-space:nowrap;text-align:center;border-top:0;border-top-color:#6b727c;align-items:center}:host:before,:host:after{position:relative;top:50%;width:50%;border-top:1px solid transparent;border-top-color:transparent;border-top-color:inherit;border-bottom:0;content:\"\"}\n"] }]
-        }], propDecorators: { ngxText: [{
-                type: Input
-            }] } });
-
-class DividerModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, declarations: [DividerComponent], imports: [CommonModule], exports: [DividerComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, imports: [CommonModule] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DividerModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    declarations: [
-                        DividerComponent
-                    ],
-                    exports: [
-                        DividerComponent
-                    ],
-                    imports: [
-                        CommonModule
-                    ]
-                }]
-        }] });
-
-class ExpansionPanelComponent {
-    constructor() {
-        this.onClick = new EventEmitter();
-        this.id = '';
-        this.disabled = false;
-        this.expanded = false;
-        this.label = '';
-        this.ngxType = 'normal';
-    }
-    ngOnInit() {
-        this.id = this.guid();
-    }
-    expand() {
-        const expansionPanel = new ExpansionPanelComponent();
-        expansionPanel.expanded = this.expanded;
-        expansionPanel.label = this.label;
-        expansionPanel.disabled = this.disabled;
-        expansionPanel.id = this.id;
-        this.onClick.emit(expansionPanel);
-    }
-    guid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            const r = (Math.random() * 16) | 0, v = c == 'x' ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-        });
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ExpansionPanelComponent, selector: "ngx-expansion-panel", inputs: { disabled: "disabled", label: "label", ngxType: "ngxType" }, outputs: { onClick: "onClick" }, ngImport: i0, template: "<div\r\n  class=\"card-epanel mb-4 p-4\"\r\n  [class.card-bg]=\"ngxType === 'card'\"\r\n  [ngClass]=\"{ 'rounded-lg box-shadow': ngxType === 'card' }\"\r\n>\r\n  <div\r\n    (click)=\"expand()\"\r\n    class=\"flex justify-between w-full text-lg font-semibold cursor-pointer h-10 items-center\"\r\n  >\r\n    <span>{{ label }}</span>\r\n    <span\r\n      class=\"arrow flex justify-center items-center\"\r\n      [ngClass]=\"expanded ? 'rotate' : 'no-rotate'\"\r\n    >\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        height=\"24\"\r\n        viewBox=\"0 -960 960 960\"\r\n        width=\"24\"\r\n      >\r\n        <path d=\"M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z\" />\r\n      </svg>\r\n    </span>\r\n  </div>\r\n  <ng-content *ngIf=\"expanded\"></ng-content>\r\n  <ngx-divider class=\"mt-4\" *ngIf=\"ngxType === 'normal'\"></ngx-divider>\r\n</div>\r\n", styles: [":host{width:100%}.card-bg{background-color:var(--ngx-theme-bg-epanel)}.card-epanel{color:var(--ngx-theme-color-epanel)}.rotate{rotate:180deg;transition:rotate .2s ease-out}.no-rotate{rotate:0deg;transition:rotate .2s ease-out}.box-shadow{box-shadow:0 3px 1px -2px #0003,0 2px 2px #00000024,0 1px 5px #0000001f}.mt-4{margin-top:1rem}.mb-4{margin-bottom:1rem}.p-4{p:1rem}.arrow{filter:var(--ngx-theme-filter-epanel-arrow)}\n"], dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: DividerComponent, selector: "ngx-divider", inputs: ["ngxText"] }] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-expansion-panel', template: "<div\r\n  class=\"card-epanel mb-4 p-4\"\r\n  [class.card-bg]=\"ngxType === 'card'\"\r\n  [ngClass]=\"{ 'rounded-lg box-shadow': ngxType === 'card' }\"\r\n>\r\n  <div\r\n    (click)=\"expand()\"\r\n    class=\"flex justify-between w-full text-lg font-semibold cursor-pointer h-10 items-center\"\r\n  >\r\n    <span>{{ label }}</span>\r\n    <span\r\n      class=\"arrow flex justify-center items-center\"\r\n      [ngClass]=\"expanded ? 'rotate' : 'no-rotate'\"\r\n    >\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        height=\"24\"\r\n        viewBox=\"0 -960 960 960\"\r\n        width=\"24\"\r\n      >\r\n        <path d=\"M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z\" />\r\n      </svg>\r\n    </span>\r\n  </div>\r\n  <ng-content *ngIf=\"expanded\"></ng-content>\r\n  <ngx-divider class=\"mt-4\" *ngIf=\"ngxType === 'normal'\"></ngx-divider>\r\n</div>\r\n", styles: [":host{width:100%}.card-bg{background-color:var(--ngx-theme-bg-epanel)}.card-epanel{color:var(--ngx-theme-color-epanel)}.rotate{rotate:180deg;transition:rotate .2s ease-out}.no-rotate{rotate:0deg;transition:rotate .2s ease-out}.box-shadow{box-shadow:0 3px 1px -2px #0003,0 2px 2px #00000024,0 1px 5px #0000001f}.mt-4{margin-top:1rem}.mb-4{margin-bottom:1rem}.p-4{p:1rem}.arrow{filter:var(--ngx-theme-filter-epanel-arrow)}\n"] }]
-        }], ctorParameters: function () { return []; }, propDecorators: { onClick: [{
-                type: Output
-            }], disabled: [{
-                type: Input
-            }], label: [{
-                type: Input
-            }], ngxType: [{
-                type: Input
-            }] } });
-
-class AccordionComponent {
-    constructor() {
-        this.subscription = new Subscription();
-    }
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
-    ngAfterContentInit() {
-        this.expansionPanels.forEach(ep => {
-            this.subscription.add(ep.onClick.subscribe((value) => {
-                this.expand(value);
-            }));
-        });
-    }
-    expand(component) {
-        this.expansionPanels.forEach(ep => {
-            if (ep.id === component.id) {
-                ep.expanded = ep.expanded ? false : true;
-            }
-            else {
-                ep.expanded = false;
-            }
-        });
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AccordionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: AccordionComponent, selector: "ngx-accordion", queries: [{ propertyName: "expansionPanels", predicate: ExpansionPanelComponent }], ngImport: i0, template: "<ng-container *ngFor=\"let expansionPanel of expansionPanels\">\n    <ng-content></ng-content>\n</ng-container>", styles: [""], dependencies: [{ kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AccordionComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-accordion', template: "<ng-container *ngFor=\"let expansionPanel of expansionPanels\">\n    <ng-content></ng-content>\n</ng-container>" }]
-        }], propDecorators: { expansionPanels: [{
-                type: ContentChildren,
-                args: [ExpansionPanelComponent]
-            }] } });
-
-class ExpansionPanelModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, declarations: [AccordionComponent, ExpansionPanelComponent], imports: [CommonModule, DividerModule], exports: [AccordionComponent, ExpansionPanelComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, imports: [CommonModule, DividerModule] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ExpansionPanelModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    declarations: [AccordionComponent, ExpansionPanelComponent],
-                    exports: [AccordionComponent, ExpansionPanelComponent],
-                    imports: [CommonModule, DividerModule],
-                }]
-        }] });
-
-class CardComponent {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardComponent, selector: "ngx-card", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{background:var(--ngx-theme-bg-card);border-radius:.5rem;box-shadow:0 2px 1px -1px #0003,0 1px 1px #00000024,0 1px 3px #0000001f;display:flex;flex-direction:column;box-sizing:border-box}\n"] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-card', template: "<ng-content></ng-content>\n", styles: [":host{background:var(--ngx-theme-bg-card);border-radius:.5rem;box-shadow:0 2px 1px -1px #0003,0 1px 1px #00000024,0 1px 3px #0000001f;display:flex;flex-direction:column;box-sizing:border-box}\n"] }]
-        }] });
-
-class CardHeaderComponent {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardHeaderComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardHeaderComponent, selector: "ngx-card-header", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:flex;padding:1rem 1rem 0}\n"] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardHeaderComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-card-header', template: "<ng-content></ng-content>\n", styles: [":host{display:flex;padding:1rem 1rem 0}\n"] }]
-        }] });
-
-class CardContentComponent {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardContentComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardContentComponent, selector: "ngx-card-content", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:block;padding:0 1rem}\n"] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardContentComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-card-content', template: "<ng-content></ng-content>\n", styles: [":host{display:block;padding:0 1rem}\n"] }]
-        }] });
-
-class CardActionsComponent {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardActionsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CardActionsComponent, selector: "ngx-card-actions", ngImport: i0, template: "<ng-content></ng-content>\n", styles: [":host{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:3.25rem;padding:.5rem}\n"] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardActionsComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-card-actions', template: "<ng-content></ng-content>\n", styles: [":host{display:flex;flex-direction:row;align-items:center;box-sizing:border-box;min-height:3.25rem;padding:.5rem}\n"] }]
-        }] });
-
-class CardAvatarDirective {
-    constructor(elementRef, renderer2) {
-        this.elementRef = elementRef;
-        this.renderer2 = renderer2;
-    }
-    ngOnInit() {
-        this.setStyle();
-    }
-    setStyle() {
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'height', '2.5rem');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'width', '2.5rem');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'border-radius', '50%');
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardAvatarDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CardAvatarDirective, selector: "[ngx-card-avatar]", ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardAvatarDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngx-card-avatar]',
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class CardImageDirective {
-    constructor(elementRef, renderer2) {
-        this.elementRef = elementRef;
-        this.renderer2 = renderer2;
-    }
-    ngOnInit() {
-        this.setStyle();
-    }
-    setStyle() {
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'position', 'relative');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'box-sizing', 'border-box');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-repeat', 'no-repeat');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-position', 'center');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'background-size', 'cover');
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardImageDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: CardImageDirective, selector: "[ngx-card-image]", ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardImageDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngx-card-image]',
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; } });
-
-class CardModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: CardModule, declarations: [CardComponent,
-            CardHeaderComponent,
-            CardContentComponent,
-            CardActionsComponent,
-            CardAvatarDirective,
-            CardImageDirective], imports: [CommonModule], exports: [CardComponent,
-            CardHeaderComponent,
-            CardContentComponent,
-            CardActionsComponent,
-            CardAvatarDirective,
-            CardImageDirective] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, imports: [CommonModule] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CardModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    declarations: [
-                        CardComponent,
-                        CardHeaderComponent,
-                        CardContentComponent,
-                        CardActionsComponent,
-                        CardAvatarDirective,
-                        CardImageDirective,
-                    ],
-                    exports: [
-                        CardComponent,
-                        CardHeaderComponent,
-                        CardContentComponent,
-                        CardActionsComponent,
-                        CardAvatarDirective,
-                        CardImageDirective,
-                    ],
-                    imports: [CommonModule],
-                }]
-        }] });
-
-class CarouselItemComponent {
-    constructor() {
-        this.id = '';
-        this.isActive = false;
-        this.disabled = false;
-    }
-    ngOnInit() {
-        this.id = this.guid();
-    }
-    guid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            const r = (Math.random() * 16) | 0, v = c == 'x' ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-        });
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CarouselItemComponent, selector: "ngx-carousel-item", inputs: { disabled: "disabled" }, ngImport: i0, template: "<div class=\"ngx-carousel-item\" [id]=\"id\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}.ngx-carousel-item{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}\n"] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselItemComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-carousel-item', template: "<div class=\"ngx-carousel-item\" [id]=\"id\">\n  <ng-content></ng-content>\n</div>\n", styles: [":host{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}.ngx-carousel-item{display:flex;justify-content:center;flex-direction:column;max-width:-moz-fit-content;max-width:fit-content}\n"] }]
-        }], propDecorators: { disabled: [{
-                type: Input
-            }] } });
-
-class CarouselComponent {
-    constructor(cdr) {
-        this.cdr = cdr;
-        this.ngxAutoPlaySpeed = 3000;
-    }
-    ngAfterContentInit() {
-        this.carouselItems.first.isActive = true;
-        this.currentItem = this.carouselItems.first;
-        this.cdr.markForCheck();
-        if (this.ngxAutoPlay) {
-            this.autoPlay();
-        }
-    }
-    autoPlay(index = 0) {
-        setTimeout(() => {
-            this.onClick(this.carouselItems.get(index));
-            index = index === this.carouselItems.length - 1 ? 0 : ++index;
-            this.autoPlay(index);
-        }, this.ngxAutoPlaySpeed);
-    }
-    onClick(carouselItem) {
-        this.carouselItems?.forEach((ci) => {
-            ci.isActive = ci.id === carouselItem.id ? true : false;
-        });
-        const element = document.getElementById(carouselItem.id);
-        element?.scrollIntoView({ behavior: 'smooth' });
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: CarouselComponent, selector: "ngx-carousel", inputs: { ngxAutoPlay: ["ngxAutoPlay", "ngxAutoPlay", booleanAttribute], ngxAutoPlaySpeed: "ngxAutoPlaySpeed" }, queries: [{ propertyName: "carouselItems", predicate: CarouselItemComponent }], ngImport: i0, template: "<div class=\"ngx-carousel\">\r\n  <div class=\"slick-initialized slick-slider\">\r\n    <div class=\"slick-list\">\r\n      <div class=\"slick-track\">\r\n        <ng-content></ng-content>\r\n      </div>\r\n    </div>\r\n\r\n    <ul class=\"slick-list slick-dots slick-dots-bottom\">\r\n      <li\r\n        [class.slick-active]=\"carouselItem.isActive\"\r\n        *ngFor=\"let carouselItem of carouselItems\"\r\n        (click)=\"onClick(carouselItem)\"\r\n      >\r\n        <button>{{ carouselItem.id }}</button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n", styles: ["@charset \"UTF-8\";.ngx-carousel{box-sizing:border-box;margin:0;padding:0;color:#000000d9;font-size:14px;font-variant:tabular-nums;line-height:1.5715;list-style:none;font-feature-settings:\"tnum\";overflow:auto}.ngx-carousel .slick-slider{position:relative;display:block;box-sizing:border-box;touch-action:pan-y;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}.ngx-carousel .slick-list{position:relative;display:block;margin:0;padding:0;overflow:hidden}.ngx-carousel .slick-list:focus{outline:none}.ngx-carousel .slick-list.dragging{cursor:pointer}.ngx-carousel .slick-list .slick-slide{pointer-events:none}.ngx-carousel .slick-list .slick-slide input.ant-radio-input,.ngx-carousel .slick-list .slick-slide input.ant-checkbox-input{visibility:hidden}.ngx-carousel .slick-list .slick-slide.slick-active{pointer-events:auto}.ngx-carousel .slick-list .slick-slide.slick-active input.ant-radio-input,.ngx-carousel .slick-list .slick-slide.slick-active input.ant-checkbox-input{visibility:visible}.ngx-carousel .slick-list .slick-slide>div>div{vertical-align:bottom}.ngx-carousel .slick-slider .slick-track,.ngx-carousel .slick-slider .slick-list{transform:translateZ(0);touch-action:pan-y}.ngx-carousel .slick-track{position:relative;top:0;left:0;display:flex}.ngx-carousel .slick-track:before,.ngx-carousel .slick-track:after{display:table;content:\"\"}.ngx-carousel .slick-track:after{clear:both}.slick-loading .ngx-carousel .slick-track{visibility:hidden}.ngx-carousel .slick-slide{display:none;float:left;height:100%;min-height:1px}.ngx-carousel .slick-slide img{display:block}.ngx-carousel .slick-slide.slick-loading img{display:none}.ngx-carousel .slick-slide.dragging img{pointer-events:none}.ngx-carousel .slick-initialized .slick-slide{display:block}.ngx-carousel .slick-loading .slick-slide{visibility:hidden}.ngx-carousel .slick-vertical .slick-slide{display:block;height:auto}.ngx-carousel .slick-arrow.slick-hidden{display:none}.ngx-carousel .slick-prev,.ngx-carousel .slick-next{top:50%;display:block;width:20px;height:20px;margin-top:-10px;padding:0;color:transparent;font-size:0;line-height:0;background:transparent;border:0;outline:none;cursor:pointer}.ngx-carousel .slick-prev:hover,.ngx-carousel .slick-next:hover,.ngx-carousel .slick-prev:focus,.ngx-carousel .slick-next:focus{color:transparent;background:transparent;outline:none}.ngx-carousel .slick-prev:hover:before,.ngx-carousel .slick-next:hover:before,.ngx-carousel .slick-prev:focus:before,.ngx-carousel .slick-next:focus:before{opacity:1}.ngx-carousel .slick-prev.slick-disabled:before,.ngx-carousel .slick-next.slick-disabled:before{opacity:.25}.ngx-carousel .slick-prev{left:-25px}.ngx-carousel .slick-prev:before{content:\"\\2190\"}.ngx-carousel .slick-next{right:-25px}.ngx-carousel .slick-next:before{content:\"\\2192\"}.ngx-carousel .slick-dots{position:absolute;right:0;bottom:0;left:0;z-index:15;display:flex!important;justify-content:center;margin-right:15%;margin-left:15%;padding-left:0;list-style:none}.ngx-carousel .slick-dots-bottom{bottom:12px}.ngx-carousel .slick-dots-top{top:12px;bottom:auto}.ngx-carousel .slick-dots li{position:relative;display:inline-block;flex:0 1 auto;box-sizing:content-box;width:16px;height:3px;margin:0 3px;padding:0;text-align:center;text-indent:-999px;vertical-align:top;transition:all .5s}.ngx-carousel .slick-dots li button{display:block;width:100%;height:3px;padding:0;color:transparent;font-size:0;background:#fff;border:0;border-radius:1px;outline:none;cursor:pointer;opacity:.3;transition:all .5s}.ngx-carousel .slick-dots li button:hover,.ngx-carousel .slick-dots li button:focus{opacity:.75}.ngx-carousel .slick-dots li.slick-active{width:24px}.ngx-carousel .slick-dots li.slick-active button{background:#fff;opacity:1}.ngx-carousel .slick-dots li.slick-active:hover,.ngx-carousel .slick-dots li.slick-active:focus{opacity:1}ngx-carousel{display:block;position:relative;overflow:hidden;width:100%;height:100%}.slick-dots{display:block}.slick-track{opacity:1}.slick-list{direction:ltr}\n"], dependencies: [{ kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'ngx-carousel', changeDetection: ChangeDetectionStrategy.OnPush, template: "<div class=\"ngx-carousel\">\r\n  <div class=\"slick-initialized slick-slider\">\r\n    <div class=\"slick-list\">\r\n      <div class=\"slick-track\">\r\n        <ng-content></ng-content>\r\n      </div>\r\n    </div>\r\n\r\n    <ul class=\"slick-list slick-dots slick-dots-bottom\">\r\n      <li\r\n        [class.slick-active]=\"carouselItem.isActive\"\r\n        *ngFor=\"let carouselItem of carouselItems\"\r\n        (click)=\"onClick(carouselItem)\"\r\n      >\r\n        <button>{{ carouselItem.id }}</button>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>\r\n", styles: ["@charset \"UTF-8\";.ngx-carousel{box-sizing:border-box;margin:0;padding:0;color:#000000d9;font-size:14px;font-variant:tabular-nums;line-height:1.5715;list-style:none;font-feature-settings:\"tnum\";overflow:auto}.ngx-carousel .slick-slider{position:relative;display:block;box-sizing:border-box;touch-action:pan-y;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}.ngx-carousel .slick-list{position:relative;display:block;margin:0;padding:0;overflow:hidden}.ngx-carousel .slick-list:focus{outline:none}.ngx-carousel .slick-list.dragging{cursor:pointer}.ngx-carousel .slick-list .slick-slide{pointer-events:none}.ngx-carousel .slick-list .slick-slide input.ant-radio-input,.ngx-carousel .slick-list .slick-slide input.ant-checkbox-input{visibility:hidden}.ngx-carousel .slick-list .slick-slide.slick-active{pointer-events:auto}.ngx-carousel .slick-list .slick-slide.slick-active input.ant-radio-input,.ngx-carousel .slick-list .slick-slide.slick-active input.ant-checkbox-input{visibility:visible}.ngx-carousel .slick-list .slick-slide>div>div{vertical-align:bottom}.ngx-carousel .slick-slider .slick-track,.ngx-carousel .slick-slider .slick-list{transform:translateZ(0);touch-action:pan-y}.ngx-carousel .slick-track{position:relative;top:0;left:0;display:flex}.ngx-carousel .slick-track:before,.ngx-carousel .slick-track:after{display:table;content:\"\"}.ngx-carousel .slick-track:after{clear:both}.slick-loading .ngx-carousel .slick-track{visibility:hidden}.ngx-carousel .slick-slide{display:none;float:left;height:100%;min-height:1px}.ngx-carousel .slick-slide img{display:block}.ngx-carousel .slick-slide.slick-loading img{display:none}.ngx-carousel .slick-slide.dragging img{pointer-events:none}.ngx-carousel .slick-initialized .slick-slide{display:block}.ngx-carousel .slick-loading .slick-slide{visibility:hidden}.ngx-carousel .slick-vertical .slick-slide{display:block;height:auto}.ngx-carousel .slick-arrow.slick-hidden{display:none}.ngx-carousel .slick-prev,.ngx-carousel .slick-next{top:50%;display:block;width:20px;height:20px;margin-top:-10px;padding:0;color:transparent;font-size:0;line-height:0;background:transparent;border:0;outline:none;cursor:pointer}.ngx-carousel .slick-prev:hover,.ngx-carousel .slick-next:hover,.ngx-carousel .slick-prev:focus,.ngx-carousel .slick-next:focus{color:transparent;background:transparent;outline:none}.ngx-carousel .slick-prev:hover:before,.ngx-carousel .slick-next:hover:before,.ngx-carousel .slick-prev:focus:before,.ngx-carousel .slick-next:focus:before{opacity:1}.ngx-carousel .slick-prev.slick-disabled:before,.ngx-carousel .slick-next.slick-disabled:before{opacity:.25}.ngx-carousel .slick-prev{left:-25px}.ngx-carousel .slick-prev:before{content:\"\\2190\"}.ngx-carousel .slick-next{right:-25px}.ngx-carousel .slick-next:before{content:\"\\2192\"}.ngx-carousel .slick-dots{position:absolute;right:0;bottom:0;left:0;z-index:15;display:flex!important;justify-content:center;margin-right:15%;margin-left:15%;padding-left:0;list-style:none}.ngx-carousel .slick-dots-bottom{bottom:12px}.ngx-carousel .slick-dots-top{top:12px;bottom:auto}.ngx-carousel .slick-dots li{position:relative;display:inline-block;flex:0 1 auto;box-sizing:content-box;width:16px;height:3px;margin:0 3px;padding:0;text-align:center;text-indent:-999px;vertical-align:top;transition:all .5s}.ngx-carousel .slick-dots li button{display:block;width:100%;height:3px;padding:0;color:transparent;font-size:0;background:#fff;border:0;border-radius:1px;outline:none;cursor:pointer;opacity:.3;transition:all .5s}.ngx-carousel .slick-dots li button:hover,.ngx-carousel .slick-dots li button:focus{opacity:.75}.ngx-carousel .slick-dots li.slick-active{width:24px}.ngx-carousel .slick-dots li.slick-active button{background:#fff;opacity:1}.ngx-carousel .slick-dots li.slick-active:hover,.ngx-carousel .slick-dots li.slick-active:focus{opacity:1}ngx-carousel{display:block;position:relative;overflow:hidden;width:100%;height:100%}.slick-dots{display:block}.slick-track{opacity:1}.slick-list{direction:ltr}\n"] }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { carouselItems: [{
-                type: ContentChildren,
-                args: [CarouselItemComponent]
-            }], ngxAutoPlay: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], ngxAutoPlaySpeed: [{
-                type: Input
-            }] } });
-
-class CarouselModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, declarations: [CarouselComponent, CarouselItemComponent], imports: [CommonModule], exports: [CarouselComponent, CarouselItemComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, imports: [CommonModule] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    declarations: [CarouselComponent, CarouselItemComponent],
-                    exports: [CarouselComponent, CarouselItemComponent],
-                    imports: [CommonModule],
-                }]
-        }] });
-
-class BadgeDirective {
-    constructor(elementRef, renderer2) {
-        this.elementRef = elementRef;
-        this.renderer2 = renderer2;
-        this.ngxBadgePosition = 'after';
-        this.ngxBadgeSize = 'small';
-        this.ngxBadgeHidden = false;
-        this.newSpan = document.createElement('span');
-    }
-    ngOnChanges(changes) {
-        if (changes['ngxBadgeHidden']?.currentValue) {
-            this.renderer2.addClass(this.newSpan, 'ngx-badge-hidden');
-        }
-        else {
-            this.renderer2.removeClass(this.newSpan, 'ngx-badge-hidden');
-        }
-    }
-    ngOnInit() {
-        this.newSpan.textContent = this.ngxBadge;
-        this.renderer2.addClass(this.newSpan, 'ngx-badge-content');
-        if (this.elementRef.nativeElement.tagName.toLowerCase() === 'button') {
-            this.renderer2.addClass(this.newSpan, 'ngx-badge-btn');
-        }
-        if (this.ngxBadgePosition == 'before') {
-            this.renderer2.addClass(this.newSpan, 'ngx-badge-before');
-        }
-        this.renderer2.addClass(this.newSpan, `ngx-badge-${this.ngxBadgeSize}`);
-        this.renderer2.appendChild(this.elementRef.nativeElement, this.newSpan);
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: BadgeDirective, selector: "[ngxBadge]", inputs: { ngxBadge: "ngxBadge", ngxBadgePosition: "ngxBadgePosition", ngxBadgeSize: "ngxBadgeSize", ngxBadgeHidden: "ngxBadgeHidden" }, host: { classAttribute: "ngx-badge" }, usesOnChanges: true, ngImport: i0 }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeDirective, decorators: [{
-            type: Directive,
-            args: [{
-                    selector: '[ngxBadge]',
-                    host: {
-                        class: 'ngx-badge',
-                    }
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; }, propDecorators: { ngxBadge: [{
-                type: Input
-            }], ngxBadgePosition: [{
-                type: Input
-            }], ngxBadgeSize: [{
-                type: Input
-            }], ngxBadgeHidden: [{
-                type: Input
-            }] } });
-
-class BadgeModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, declarations: [BadgeDirective], imports: [CommonModule], exports: [BadgeDirective] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, imports: [CommonModule] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BadgeModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    declarations: [BadgeDirective],
-                    exports: [BadgeDirective],
-                    imports: [CommonModule]
                 }]
         }] });
 
