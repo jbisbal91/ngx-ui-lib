@@ -1,8 +1,9 @@
 import * as i0 from '@angular/core';
-import { Injectable, Component, NgModule, Directive, Input, booleanAttribute, ChangeDetectionStrategy, ContentChildren, EventEmitter, Output } from '@angular/core';
+import { Injectable, Component, NgModule, Directive, Input, booleanAttribute, ChangeDetectionStrategy, ContentChildren, EventEmitter, Output, forwardRef } from '@angular/core';
 import * as i1 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { Subscription, Subject } from 'rxjs';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 class NgxUiComponentsService {
     constructor() { }
@@ -598,6 +599,72 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                 }]
         }] });
 
+class SwitchComponent {
+    constructor(cdr) {
+        this.cdr = cdr;
+        this.isChecked = false;
+        this.onChange = () => { };
+        this.onTouched = () => { };
+        this.ngxDisabled = false;
+    }
+    ngAfterContentInit() {
+        this.ngxDisabled = this.ngxDisabled;
+        this.cdr.markForCheck();
+    }
+    writeValue(value) {
+        this.isChecked = value;
+        this.cdr.markForCheck();
+    }
+    registerOnChange(fn) {
+        console.log(fn);
+        //this.onChange = fn;
+    }
+    registerOnTouched(fn) {
+        //this.onTouched = fn;
+        console.log(fn);
+    }
+    setDisabledState(disabled) {
+        //this.cdr.markForCheck();
+    }
+    toggle() {
+        this.writeValue(!this.isChecked);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SwitchComponent, selector: "ngx-switch", inputs: { ngxDisabled: "ngxDisabled" }, providers: [
+            {
+                provide: NG_VALUE_ACCESSOR,
+                useExisting: forwardRef(() => SwitchComponent),
+                multi: true,
+            },
+        ], ngImport: i0, template: "<button\r\n  [disabled]=\"ngxDisabled\"\r\n  class=\"ngx-switch\"\r\n  [class.ngx-switch-checked]=\"isChecked\"\r\n  (click)=\"toggle()\"\r\n>\r\n  <span class=\"ngx-switch-knob\"></span>\r\n  <span class=\"ngx-switch-inner\"></span>\r\n</button>\r\n", styles: [".ngx-switch{margin:0;padding:0;color:#000000d9;font-size:.875rem;font-variant:tabular-nums;line-height:1.5715;list-style:none;font-feature-settings:\"tnum\";position:relative;display:inline-block;box-sizing:border-box;min-width:2.75rem;height:1.375rem;line-height:1.375rem;vertical-align:middle;background-image:linear-gradient(to right,rgba(0,0,0,.25),rgba(0,0,0,.25)),linear-gradient(to right,#fff,#fff);border:0;border-radius:100px;cursor:pointer;transition:all .2s;-webkit-user-select:none;user-select:none}.ngx-switch-knob{position:absolute;top:2px;left:2px;width:18px;height:18px;transition:all .2s ease-in-out}.ngx-switch-knob:before{position:absolute;inset:0;background-color:#fff;border-radius:9px;box-shadow:0 2px 4px #00230b33;transition:all .2s ease-in-out;content:\"\"}.ngx-switch-checked{background:#1890FF}.ngx-switch-checked .ngx-switch-knob{left:calc(100% - 20px)!important}.ngx-switch-inner{display:block;margin:0 7px 0 25px;color:#fff;font-size:12px;transition:margin .2s}\n"], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'ngx-switch', providers: [
+                        {
+                            provide: NG_VALUE_ACCESSOR,
+                            useExisting: forwardRef(() => SwitchComponent),
+                            multi: true,
+                        },
+                    ], changeDetection: ChangeDetectionStrategy.OnPush, template: "<button\r\n  [disabled]=\"ngxDisabled\"\r\n  class=\"ngx-switch\"\r\n  [class.ngx-switch-checked]=\"isChecked\"\r\n  (click)=\"toggle()\"\r\n>\r\n  <span class=\"ngx-switch-knob\"></span>\r\n  <span class=\"ngx-switch-inner\"></span>\r\n</button>\r\n", styles: [".ngx-switch{margin:0;padding:0;color:#000000d9;font-size:.875rem;font-variant:tabular-nums;line-height:1.5715;list-style:none;font-feature-settings:\"tnum\";position:relative;display:inline-block;box-sizing:border-box;min-width:2.75rem;height:1.375rem;line-height:1.375rem;vertical-align:middle;background-image:linear-gradient(to right,rgba(0,0,0,.25),rgba(0,0,0,.25)),linear-gradient(to right,#fff,#fff);border:0;border-radius:100px;cursor:pointer;transition:all .2s;-webkit-user-select:none;user-select:none}.ngx-switch-knob{position:absolute;top:2px;left:2px;width:18px;height:18px;transition:all .2s ease-in-out}.ngx-switch-knob:before{position:absolute;inset:0;background-color:#fff;border-radius:9px;box-shadow:0 2px 4px #00230b33;transition:all .2s ease-in-out;content:\"\"}.ngx-switch-checked{background:#1890FF}.ngx-switch-checked .ngx-switch-knob{left:calc(100% - 20px)!important}.ngx-switch-inner{display:block;margin:0 7px 0 25px;color:#fff;font-size:12px;transition:margin .2s}\n"] }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { ngxDisabled: [{
+                type: Input
+            }] } });
+
+class SwitchModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SwitchModule, declarations: [SwitchComponent], imports: [CommonModule], exports: [SwitchComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchModule, imports: [CommonModule] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [SwitchComponent],
+                    exports: [SwitchComponent],
+                    imports: [CommonModule],
+                }]
+        }] });
+
 class TabComponent {
     constructor() {
         this.label = '';
@@ -871,5 +938,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { AccordionComponent, BadgeDirective, BadgeModule, BlockButtonDirective, ButtonModule, CardActionsComponent, CardAvatarDirective, CardComponent, CardContentComponent, CardHeaderComponent, CardImageDirective, CardModule, CarouselComponent, CarouselItemComponent, CarouselModule, DangerButtonDirective, DialogComponent, DialogModule, DividerComponent, DividerModule, ExpansionPanelComponent, ExpansionPanelModule, GhostButtonDirective, IconDirective, IconModule, NgxButtonDirective, NgxUiComponentsComponent, NgxUiComponentsModule, NgxUiComponentsService, SuccessButtonDirective, TabComponent, TabGroupComponent, TabModule, TagComponent, TagModule };
+export { AccordionComponent, BadgeDirective, BadgeModule, BlockButtonDirective, ButtonModule, CardActionsComponent, CardAvatarDirective, CardComponent, CardContentComponent, CardHeaderComponent, CardImageDirective, CardModule, CarouselComponent, CarouselItemComponent, CarouselModule, DangerButtonDirective, DialogComponent, DialogModule, DividerComponent, DividerModule, ExpansionPanelComponent, ExpansionPanelModule, GhostButtonDirective, IconDirective, IconModule, NgxButtonDirective, NgxUiComponentsComponent, NgxUiComponentsModule, NgxUiComponentsService, SuccessButtonDirective, SwitchComponent, SwitchModule, TabComponent, TabGroupComponent, TabModule, TagComponent, TagModule };
 //# sourceMappingURL=ngx-ui-components.mjs.map
