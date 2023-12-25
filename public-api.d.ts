@@ -27,6 +27,8 @@ export * from './lib/components/expansion-panel/expansion-panel/expansion-panel.
 export * from './lib/components/tab/tab.module';
 export * from './lib/components/tab/tab/tab.component';
 export * from './lib/components/tab/tab-group/tab-group.component';
+export * from './lib/components/tag/tag.module';
+export * from './lib/components/tag/tag.component';
 export * from './lib/components/dialog/dialog.module';
 export * from './lib/components/dialog/dialog/dialog.component';
 export * from './lib/components/icon/icon.module';
