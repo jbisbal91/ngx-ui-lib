@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, ElementRef, EventEmitter, Renderer2 } from '@angular/core';
+import { ElementRef, EventEmitter, Renderer2 } from '@angular/core';
 import * as i0 from "@angular/core";
 export declare class TagComponent {
-    private cdr;
     private renderer;
     private elementRef;
     ngxMode: 'default' | 'closeable' | 'checkable' | 'sync';
@@ -9,7 +8,7 @@ export declare class TagComponent {
     ngxChecked: boolean;
     readonly ngxOnClose: EventEmitter<MouseEvent>;
     readonly ngxCheckedChange: EventEmitter<boolean>;
-    constructor(cdr: ChangeDetectorRef, renderer: Renderer2, elementRef: ElementRef);
+    constructor(renderer: Renderer2, elementRef: ElementRef);
     updateCheckedStatus(): void;
     closeTag(e: MouseEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TagComponent, never>;
